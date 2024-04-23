@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactNative, { requireNativeComponent, NativeModules } from 'react-native';
-import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 
 const RCTYouTube = requireNativeComponent('RCTYouTube', null);
 
@@ -54,7 +53,7 @@ export default class YouTube extends React.Component {
     onChangeQuality: PropTypes.func,
     onChangeFullscreen: PropTypes.func,
     onProgress: PropTypes.func,
-    style: ViewPropTypes.style,
+    style: PropTypes.shape({}),
   };
 
   constructor(props) {
