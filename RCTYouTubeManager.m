@@ -12,9 +12,11 @@ RCT_EXPORT_MODULE();
     return [[RCTYouTube alloc] initWithBridge:self.bridge];
 }
 
-- (dispatch_queue_t)methodQueue {
-    return _bridge.uiManager.methodQueue;
-}
+// No custom methodQueue: RCTViewManager's default (the UI manager queue) is
+// right. The old getter returned `_bridge.uiManager.methodQueue`, which is nil
+// under the New Architecture (bridgeless), so RCTTurboModuleManager tried to set
+// the queue itself and red-boxed: "YouTubeManager has no setter or ivar for its
+// methodQueue".
 
 RCT_EXPORT_VIEW_PROPERTY(playerParams, NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(videoId, NSString);
